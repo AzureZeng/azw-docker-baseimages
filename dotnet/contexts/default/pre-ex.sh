@@ -1,6 +1,6 @@
 #! /bin/bash
 
-if [ -z "$BUILDTIME_MIRROR" ]; then
+if [ -n "$BUILDTIME_MIRROR" ]; then
     echo 'Overriding mirrorlist temporarily'
     sed -e 's|^mirrorlist=|#mirrorlist=|g' \
         -e "s|^#baseurl=http://dl.rockylinux.org/\$contentdir|baseurl=$BUILDTIME_MIRROR|g" \
@@ -9,4 +9,3 @@ if [ -z "$BUILDTIME_MIRROR" ]; then
 fi
 
 dnf makecache
-dnf -y update
